@@ -19,4 +19,8 @@ forecast_out = int(math.ceil(0.01*len(df)))
 data_frame['label'] = data_frame[forecast_col].shift(-forecast_out)
 data_frame.dropna(inplace=True)
 
+X = np.array(data_frame.drop(['label'],1))
+
+
+print(X)
 print(data_frame)
