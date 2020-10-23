@@ -3,12 +3,13 @@ import matplotlib.pyplot as plt
 
 df = pd.read_csv('./datasets/avocado.csv')
 df['Date'] = pd.to_datetime(df['Date'])
+df = df.copy()[df['type'] == 'organic']
 df.set_index('Date', inplace=True)
-df.sort_index(inplace=True)
+df.sort_values(by='Date',ascending=True,inplace=True)
 
 Graph_DataFrame = pd.DataFrame()
 
-for _ in set(df['region'][:6]):
+for _ in set(df['region']):
     print(_)
     region_df = df.copy()[df['region'] == _]
     region_df[f'{_}_RollingAveragePrice'] = region_df['AveragePrice'].rolling(25).mean()
