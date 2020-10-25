@@ -25,4 +25,4 @@ classifier = LinearRegression()
 classifier.fit(x_train, y_train)
 accuracy = classifier.score(x_test, y_test)
 
-print(accuracy*100)
+print(f'{accuracy*100}% accuracy')
