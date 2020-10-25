@@ -17,4 +17,12 @@ df.dropna(inplace=True)
 x = np.array(df.drop(['label'],1))
 y = np.array(df['label'])
 
-print(df.head())
+x = preprocessing.scale(x)
+
+x_train, x_test, y_train, y_test = model_selection.train_test_split(x, y, test_size=0.2)
+
+classifier = LinearRegression()
+classifier.fit(x_train, y_train)
+accuracy = classifier.score(x_test, y_test)
+
+print(accuracy*100)
